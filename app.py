@@ -81,6 +81,9 @@ def getEventVenue(data):
     state = venue.get('State__c')
     latlong = venue.get('Lat_Long__c')
     
+    latitude = latlong.get('latitude')
+    longitude = latlong.get('longitude')
+    
     if (city is None) or (country is None) or (state is None):
         return {}
     
@@ -101,7 +104,7 @@ def getEventVenue(data):
                         "buttons": [
                             {
                                 "type": "web_url",
-                                "url": "https://www.google.com",
+                                "url": "https://www.google.com/maps?q="+latitude+","+longitude,
                                 "title": "Open in Maps"
                             }
                         ]
