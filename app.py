@@ -101,6 +101,7 @@ def getEventVenue(data):
                         "buttons": [
                             {
                                 "type": "web_url",
+                                "image_url": "https://appexchange--c.na45.content.force.com/servlet/servlet.ImageServer?id=0153A000002pWmm&oid=00D300000000iTz",
                                 "url": "https://www.google.com/maps?q="+str(latitude)+","+str(longitude),
                                 "title": "Open in Maps"
                             }
