@@ -102,7 +102,7 @@ def getEventVenue(data):
                         "buttons": [
                             {
                                 "type": "web_url",
-                                "url": "https://www.google.com/maps?q="+latlong.get('latitude')+","+latlong.get('longitude')
+                                "url": "https://www.google.com/maps?q="+latlong.get('latitude')+","+latlong.get('longitude'),
                                 "title": "Open in Maps"
                             }
                         ]
