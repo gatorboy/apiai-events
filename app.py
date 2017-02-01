@@ -88,11 +88,6 @@ def getEventVenue(data):
         return {}
     
     speech = "The venue for the event " + name + " is " + city + ", " + state + ", " + country
-
-    print("Response:")
-    print(speech)
-    print("lat: " + latitude)
-    print("long: " + longitude)
     
     facebook_message = {
         "attachment": {
@@ -106,7 +101,7 @@ def getEventVenue(data):
                         "buttons": [
                             {
                                 "type": "web_url",
-                                "url": "https://www.google.com",
+                                "url": "https://www.google.com/maps?q="+str(latitude)+","+str(longitude),
                                 "title": "Open in Maps"
                             }
                         ]
