@@ -48,9 +48,9 @@ def processEventsRequest(req):
     return res
 
 def routeAndRespond(action, data):
-    if action == event.location:
+    if action == "event.location":
         return getEventVenue(data)
-    elif action == event.time:
+    elif action == "event.time":
         return getEventTime(data)
     return {}    
         
