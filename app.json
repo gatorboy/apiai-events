@@ -1,0 +1,6 @@
+{
+  "name": "API.AI Events webhook",
+  "description": "API.AI Events webhook",
+  "repository": "https://github.com/gatorboy/apiai-events",
+  "keywords": ["api.ai", "events"]
+}
