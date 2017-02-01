@@ -100,8 +100,8 @@ def getEventTime(data):
         return {}
         
     name = event.get('Label__c')
-    starttime = event.get('Event_Start_Date__c')
-    endtime = event.get('Event_End_Date__c')
+    starttime = datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%c')
+    endtime = datetime.datetime.strptime(event.get('Event_End_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%c')
 
     
     if (starttime is None):
