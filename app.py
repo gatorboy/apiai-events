@@ -33,7 +33,7 @@ def webhook():
 
 def processEventsRequest(req):
     action = req.get("result").get("action")
-    if !action.startswith("event"):
+    if not action.startswith("event"):
         return {}
     baseurl = "https://dfmobile-tzorg.cs12.force.com/customers/services/apexrest/events?"
     eventname = getEventName(req)
