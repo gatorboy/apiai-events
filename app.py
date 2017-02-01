@@ -38,9 +38,17 @@ def processRequest(req):
     eventname = getEventName(req)
     if eventname is None:
         return {}
-    url = baseurl + urllib.parse.urlencode({'names': eventname}) + "&format=json"
+    url = baseurl + urllib.parse.urlencode({'names': eventname})
+    
+    print("url:")
+    print(url)
+    
     result = urllib.request.urlopen(url).read()
     data = json.loads(result)
+    
+    print("processRequest:")
+    print(json.dumps(data, indent=4))
+    
     res = getEventVenue(data)
     return res
 
@@ -48,11 +56,11 @@ def processRequest(req):
 def getEventName(req):
     result = req.get("result")
     parameters = result.get("parameters")
-    event = parameters.get("event-name")
-    if event is None:
+    eventname = parameters.get("event-name")
+    if eventname is None:
         return None
 
-    return event
+    return eventname
 
 
 def getEventVenue(data):
@@ -83,7 +91,7 @@ def getEventVenue(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-events-webhook"
+        "source": "apiai-events"
     }
 
 
