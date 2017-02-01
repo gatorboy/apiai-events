@@ -97,8 +97,8 @@ def getEventVenue(data):
                 "elements": [
                     {
                         "title": name,
-                        "image_url": "https://appexchange--c.na45.content.force.com/servlet/servlet.ImageServer?id=0153A000002pWmm&oid=00D300000000iTz&lastMod=1472819734000",
-                        "subtitle": city + ", " + state + ", " + country,
+                        #"image_url": "https://appexchange--c.na45.content.force.com/servlet/servlet.ImageServer?id=0153A000002pWmm&oid=00D300000000iTz&lastMod=1472819734000",
+                        "subtitle": city + ", " + state,
                         "buttons": [
                             {
                                 "type": "web_url",
