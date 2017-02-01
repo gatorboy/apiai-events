@@ -24,9 +24,9 @@ def webhook():
     print(json.dumps(req, indent=4))
 
     res = processEventsRequest(req)
-    print("Total Response1: " + res)
+    #print("Total Response1: " + res)
     res = json.dumps(res, indent=4)
-    print("Total Response2: " + res)
+    #print("Total Response2: " + res)
 
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
@@ -88,34 +88,33 @@ def getEventVenue(data):
 
     print("Response:")
     print(speech)
-
-
-    facebook_message = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [
-                    {
-                        "title": name,
-                        "subtitle": city + ", " + state,
-                        "buttons": [
-                            {
-                                "type": "web_url",
-                                "url": "https://www.google.com",
-                                "title": "Open in Maps"
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
-    }
+    
+    # facebook_message = {
+    #     "attachment": {
+    #         "type": "template",
+    #         "payload": {
+    #             "template_type": "generic",
+    #             "elements": [
+    #                 {
+    #                     "title": name,
+    #                     "subtitle": city + ", " + state,
+    #                     "buttons": [
+    #                         {
+    #                             "type": "web_url",
+    #                             "url": "https://www.google.com",
+    #                             "title": "Open in Maps"
+    #                         }
+    #                     ]
+    #                 }
+    #             ]
+    #         }
+    #     }
+    # }
 
     return {
         "speech": speech,
         "displayText": speech,
-        "data": {"facebook": facebook_message},
+        # "data": {"facebook": facebook_message},
         # "contextOut": [],
         "source": "apiai-events"
     }
