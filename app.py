@@ -40,14 +40,8 @@ def processRequest(req):
         return {}
     url = baseurl + urllib.parse.urlencode({'names': eventname})
     
-    print("url:")
-    print(url)
-    
     result = urllib.request.urlopen(url).read()
     data = json.loads(result)
-    
-    print("processRequest:")
-    print(json.dumps(data, indent=4))
     
     res = getEventVenue(data)
     return res
@@ -64,7 +58,7 @@ def getEventName(req):
 
 
 def getEventVenue(data):
-    event = data.get(0)
+    event = data[0]
     if event is None:
         return {}
     
