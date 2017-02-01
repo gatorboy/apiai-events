@@ -101,9 +101,16 @@ def getEventTime(data):
         return {}
         
     name = event.get('Label__c')
+    
+    print("Event Response:")
+    print("start date: " + event.get('Event_Start_Date__c'))
+    print(json.dumps(event, indent=4))
+    print("after parse " + datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ'))
+    
     starttime = datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%c')
     endtime = datetime.datetime.strptime(event.get('Event_End_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%c')
 
+    print(starttime)
     
     if (starttime is None):
         return {}
