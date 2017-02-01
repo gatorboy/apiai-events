@@ -91,6 +91,8 @@ def getEventVenue(data):
 
     print("Response:")
     print(speech)
+    print("lat: " + latitude)
+    print("long: " + longitude)
     
     facebook_message = {
         "attachment": {
