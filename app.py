@@ -89,32 +89,32 @@ def getEventVenue(data):
     print("Response:")
     print(speech)
     
-    # facebook_message = {
-    #     "attachment": {
-    #         "type": "template",
-    #         "payload": {
-    #             "template_type": "generic",
-    #             "elements": [
-    #                 {
-    #                     "title": name,
-    #                     "subtitle": city + ", " + state,
-    #                     "buttons": [
-    #                         {
-    #                             "type": "web_url",
-    #                             "url": "https://www.google.com",
-    #                             "title": "Open in Maps"
-    #                         }
-    #                     ]
-    #                 }
-    #             ]
-    #         }
-    #     }
-    # }
+    facebook_message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": name,
+                        "subtitle": city + ", " + state,
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url": "https://www.google.com",
+                                "title": "Open in Maps"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
 
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": {"facebook": facebook_message},
+        "data": {"facebook": facebook_message},
         # "contextOut": [],
         "source": "apiai-events"
     }
