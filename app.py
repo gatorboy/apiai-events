@@ -78,6 +78,7 @@ def getEventVenue(data):
     city = venue.get('City__c')
     country = venue.get('Country__c')
     state = venue.get('State__c')
+    latlong = venue.get('Lat_Long__c')
     
     if (city is None) or (country is None) or (state is None):
         return {}
@@ -87,10 +88,34 @@ def getEventVenue(data):
     print("Response:")
     print(speech)
 
+
+    facebook_message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": name,
+                        "image_url": "https://appexchange--c.na45.content.force.com/servlet/servlet.ImageServer?id=0153A000002pWmm&oid=00D300000000iTz&lastMod=1472819734000",
+                        "subtitle": city + ", " + state + ", " + country,
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url": "https://www.google.com/maps?q="+latlong.get('latitude')+","+latlong.get('longitude')
+                                "title": "Open in Maps"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
+        "data": {"facebook": facebook_message},
         # "contextOut": [],
         "source": "apiai-events"
     }
@@ -102,11 +127,6 @@ def getEventTime(data):
         
     name = event.get('Label__c')
     
-    # print("Event Response:")
-#     print("start date: " + event.get('Event_Start_Date__c'))
-#     print(json.dumps(event, indent=4))
-#     print("after parse " + datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ'))
-#
     starttime = datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%f+0000').strftime('%c')
     endtime = datetime.datetime.strptime(event.get('Event_End_Date__c'), '%Y-%m-%dT%H:%M:%S.%f+0000').strftime('%c')
 
