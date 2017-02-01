@@ -107,8 +107,8 @@ def getEventTime(data):
     print(json.dumps(event, indent=4))
     print("after parse " + datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ'))
     
-    starttime = datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%c')
-    endtime = datetime.datetime.strptime(event.get('Event_End_Date__c'), '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%c')
+    starttime = datetime.datetime.strptime(event.get('Event_Start_Date__c'), '%Y-%m-%dT%H:%M:%S.%f+0000').strftime('%c')
+    endtime = datetime.datetime.strptime(event.get('Event_End_Date__c'), '%Y-%m-%dT%H:%M:%S.%f+0000').strftime('%c')
 
     print(starttime)
     
