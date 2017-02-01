@@ -66,13 +66,15 @@ def getEventName(req):
 def getEventVenue(data):
     event = data[0]
     print("Event:")
-    print(event)
+    print(json.dumps(event, indent=4))
     if event is None:
         return {}
     
     name = event.get('Label__c')
     
     venue = event.get('Venue__r')
+    print("Venue:")
+    print(json.dumps(venue, indent=4))
     if venue is None:
         return {}
     
@@ -80,7 +82,7 @@ def getEventVenue(data):
     country = venue.get('Country__c')
     state = venue.get('State__c')
     
-    if (location is None) or (item is None) or (units is None):
+    if (city is None) or (country is None) or (state is None):
         return {}
     
     speech = "The venue for the event " + name + "is " + city + ", " + state + ", " + country
