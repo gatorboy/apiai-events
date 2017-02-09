@@ -101,7 +101,7 @@ def getEventVenue(data):
                     "fields": [
                         {
                             "title": "Coordinates",
-                            "value": latitude + ", " + longitude
+                            "value": latitude + ", " + longitude,
                             "short": "true"
                         },
                         {
