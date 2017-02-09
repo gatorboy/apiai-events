@@ -72,6 +72,7 @@ def getEventVenue(data):
         return {}
     
     name = event.get('Label__c')
+    icon = event.get('Icon__c')
     venue = event.get('Venue__r')
     if venue is None:
         return {}
@@ -89,6 +90,32 @@ def getEventVenue(data):
     
     speech = "The venue for the event " + name + " is " + city + ", " + state + ", " + country
     
+    slack_message = {
+            "text": speech,
+            "attachments": [
+                {
+                    "title": name + "Venue Location",
+                    "title_link": "https://www.google.com/maps?q="+str(latitude)+","+str(longitude),
+                    "color": "#36a64f",
+
+                    "fields": [
+                        {
+                            "title": "Coordinates",
+                            "value": latitude + ", " + longitude
+                            "short": "true"
+                        },
+                        {
+                            "title": "Address",
+                            "value": city + ", " + state + ", " + country,
+                            "short": "false"
+                        }
+                    ],
+
+                    "thumb_url": icon
+                }
+            ]
+    }
+        
     facebook_message = {
         "attachment": {
             "type": "template",
@@ -114,7 +141,7 @@ def getEventVenue(data):
     return {
         "speech": speech,
         "displayText": speech,
-        "data": {"facebook": facebook_message},
+        "data": {"facebook": facebook_message, "slack": slack_message},
         # "contextOut": [],
         "source": "apiai-events"
     }
