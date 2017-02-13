@@ -10,7 +10,7 @@ More info about Api.ai webhooks could be found here:
 
 # What does the service do?
 It's a Salesforce events information fulfillment service that uses Salesforce APIs
-The services takes the `geo-city` parameter from the action, performs geolocation for the city and requests weather information from Yahoo! Weather public API. 
+The services takes the `event-name` parameter from the action, performs venue or time query from Salesforce Events API. 
 
 The service packs the result in the Api.ai webhook-compatible response JSON and returns it to Api.ai.
 
