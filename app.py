@@ -91,7 +91,7 @@ def getEventVenue(data):
     if (city is None) or (country is None) or (state is None):
         return {}
     
-    speech = "The venue for the event " + name + " is at " + venuename + " which is at " + address + " , " + city + ", " + state + ", " + country
+    speech = "The venue for the event " + name + " is at " + venuename + ", which is at " + address + ", " + city + ", " + state + ", " + country
     
     slack_message = {
             "text": speech,
@@ -127,7 +127,7 @@ def getEventVenue(data):
                 "elements": [
                     {
                         "title": name,
-                        "subtitle": city + ", " + state,
+                        "subtitle": venuename + ", " + address + ", " + city + ", " + state,
                         "buttons": [
                             {
                                 "type": "web_url",
