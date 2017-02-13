@@ -38,10 +38,11 @@ def processEventsRequest(req):
     if not action.startswith("event"):
         return {}
     baseurl = "https://dfmobile-tzorg.cs12.force.com/customers/services/apexrest/events?"
+    flds = "Name,Id,Event_Start_Date__c,Event_End_Date__c,SponsorLevels__c,Label__c,Event_Time_Zone__c,Icon__c,Highlight_Color__c,Event_Type__c,ImageURL_Mobile__c,Venue__r.Name,Venue__r.Address__c,Venue__r.City__c,Venue__r.Country__c,Venue__r.State__c,Venue__r.Lat_Long__c,Phase__r.SessionsCanBeBooked__c,Phase__r.SessionsIncludeLogisticData__c,Phase__r.SessionsSurveyEnabled__c,Phase__r.MyAgendaVisible__c,Phase__r.SessionsVisible__c,Phase__r.RegistrationAvailable__c,ActiveSponsorCount__c,Pre_Event_Now_Card_Image__c,Post_Event_Now_Card_Image__c,Themes__c,JobFunctions__c,Industries__c,Products__c,Survey_Ad__c,MobileFeatures__c,Venue_Bookings__r,Session_Record_Type_Info__r.Display_Name__c,Session_Record_Type_Info__r.Session_Record_Type__c,Session_Record_Type_Info__r.Guests_Can_See_Sessions__c,Venue_Bookings__r.Venue__r.Name,Venue_Bookings__r.Venue__r.Address__c,Venue_Bookings__r.Venue__r.Address_2__c,Venue_Bookings__r.Venue__r.City__c,Venue_Bookings__r.Venue__r.State__c,Venue_Bookings__r.Venue__r.Country__c,Venue_Bookings__r.Venue__r.Postal_Code__c,Venue_Bookings__r.Venue__r.Postal_Code_Zip__c,Venue_Bookings__r.Venue__r.GoogleMapURL__c,Venue_Bookings__r.Venue__r.Lat_Long__Latitude__s,Venue_Bookings__r.Venue__r.Lat_Long__Longitude__s"
     eventname = getEventName(req)
     if eventname is None:
         return {}
-    url = baseurl + urllib.parse.urlencode({'names': eventname})
+    url = baseurl + urllib.parse.urlencode({'names': eventname, 'flds': flds})
     
     result = urllib.request.urlopen(url).read()
     data = json.loads(result)
@@ -77,6 +78,8 @@ def getEventVenue(data):
     if venue is None:
         return {}
     
+    venuename = venue.get('Name')
+    address = venue.get('Address__c')
     city = venue.get('City__c')
     country = venue.get('Country__c')
     state = venue.get('State__c')
@@ -88,7 +91,7 @@ def getEventVenue(data):
     if (city is None) or (country is None) or (state is None):
         return {}
     
-    speech = "The venue for the event " + name + " is " + city + ", " + state + ", " + country
+    speech = "The venue for the event " + name + " is at " + venuename + " which is at " + address + " , " + city + ", " + state + ", " + country
     
     slack_message = {
             "text": speech,
